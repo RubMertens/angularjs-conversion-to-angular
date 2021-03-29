@@ -1,6 +1,7 @@
 import { ApplicationRef, DoBootstrap, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 import { UpgradeModule } from '@angular/upgrade/static';
 
@@ -14,7 +15,8 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule,
     RouterModule.forRoot([]),
-    UpgradeModule
+    UpgradeModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: []

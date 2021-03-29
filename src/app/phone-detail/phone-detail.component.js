@@ -8,9 +8,13 @@ angular.
     controller: ['$routeParams', 'Phone',
       function PhoneDetailController($routeParams, Phone) {
         var self = this;
-        self.phone = Phone.get({phoneId: $routeParams.phoneId}, function(phone) {
+        Phone.get($routeParams.phoneId).subscribe(phone => {
+          self.phone = phone;
           self.setImage(phone.images[0]);
-        });
+        })
+        // self.phone = Phone.get({phoneId: $routeParams.phoneId}, function(phone) {
+        //   self.setImage(phone.images[0]);
+        // });
 
         self.setImage = function setImage(imageUrl) {
           self.mainImageUrl = imageUrl;
