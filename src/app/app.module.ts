@@ -22,7 +22,6 @@ import { APP_BASE_HREF, HashLocationStrategy, LocationStrategy } from '@angular/
   imports: [
     BrowserModule,
     RouterModule.forRoot([]),
-    UpgradeModule,
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot([
@@ -38,12 +37,5 @@ import { APP_BASE_HREF, HashLocationStrategy, LocationStrategy } from '@angular/
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule implements DoBootstrap {
-
-  constructor(private upgrade: UpgradeModule) {
-
-  }
-  ngDoBootstrap(appRef: ApplicationRef): void {
-    // this.upgrade.bootstrap(document.documentElement, ['phonecatApp']);
-  }
+export class AppModule {
 }
