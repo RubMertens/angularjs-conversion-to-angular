@@ -1,3 +1,5 @@
+import { PhoneDetailComponent } from './phone-detail/phone-detail.component';
+import { CheckMarkPipe } from './phone-detail/checkmark.pipe';
 import { ApplicationRef, DoBootstrap, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
@@ -12,14 +14,17 @@ import { PhoneListComponent } from './phone-list/phone-list.component';
 @NgModule({
   declarations: [
     AppComponent,
-    PhoneListComponent
+    PhoneListComponent,
+    PhoneDetailComponent,
+    CheckMarkPipe
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot([]),
     UpgradeModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+
   ],
   providers: [],
   bootstrap: []
