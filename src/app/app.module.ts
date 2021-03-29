@@ -1,16 +1,30 @@
-import { NgModule } from '@angular/core';
+import { ApplicationRef, DoBootstrap, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { RouterModule } from '@angular/router';
+
+import { UpgradeModule } from '@angular/upgrade/static';
 
 import { AppComponent } from './app.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    RouterModule.forRoot([]),
+    UpgradeModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: []
 })
-export class AppModule { }
+export class AppModule implements DoBootstrap {
+
+  constructor(private upgrade: UpgradeModule) {
+
+  }
+  ngDoBootstrap(appRef: ApplicationRef): void {
+    this.upgrade.bootstrap(document.documentElement, ['phonecatApp']);
+  }
+}
