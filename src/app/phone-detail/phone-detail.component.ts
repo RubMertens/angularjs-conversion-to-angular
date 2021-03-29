@@ -1,5 +1,7 @@
 import { Phone } from './../core/phone/phone.service';
 import { Component, Inject } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { map, switchMap, tap } from 'rxjs/operators';
 // 'use strict';
 
 // // Register `phoneDetail` component, along with its associated controller and template
@@ -34,13 +36,15 @@ export class PhoneDetailComponent {
   phone: any;
   mainImageUrl: string;
 
-  constructor(phoneService: Phone, @Inject('$injector') injector) {
-    const phoneId = injector.get('$routeParams')?.phoneId;
-    phoneService.get(phoneId)
-      .subscribe(data => {
-        this.phone = data;
-        this.mainImageUrl = this.phone.images[0];
-      });
+  constructor(phoneService: Phone, private route: ActivatedRoute) {
+    route.params.pipe(
+      map(p => p.phoneId),
+      switchMap(id => phoneService.get(id))
+    ).subscribe(data => {
+      console.log(data);
+      this.phone = data;
+      this.mainImageUrl = this.phone.images[0];
+    });
   }
   setImage(image: string) {
     this.mainImageUrl = image;

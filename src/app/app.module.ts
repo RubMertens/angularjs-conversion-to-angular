@@ -10,6 +10,7 @@ import { UpgradeModule } from '@angular/upgrade/static';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { PhoneListComponent } from './phone-list/phone-list.component';
+import { APP_BASE_HREF, HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -24,10 +25,18 @@ import { PhoneListComponent } from './phone-list/phone-list.component';
     UpgradeModule,
     HttpClientModule,
     FormsModule,
+    RouterModule.forRoot([
+      { path: '', redirectTo: 'phones', pathMatch: 'full' },
+      { path: 'phones', component: PhoneListComponent },
+      { path: 'phones/:phoneId', component: PhoneDetailComponent }
+    ])
 
   ],
-  providers: [],
-  bootstrap: []
+  providers: [
+    { provide: APP_BASE_HREF, useValue: '!' },
+    { provide: LocationStrategy, useClass: HashLocationStrategy }
+  ],
+  bootstrap: [AppComponent]
 })
 export class AppModule implements DoBootstrap {
 
@@ -35,6 +44,6 @@ export class AppModule implements DoBootstrap {
 
   }
   ngDoBootstrap(appRef: ApplicationRef): void {
-    this.upgrade.bootstrap(document.documentElement, ['phonecatApp']);
+    // this.upgrade.bootstrap(document.documentElement, ['phonecatApp']);
   }
 }
