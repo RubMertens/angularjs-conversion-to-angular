@@ -6,17 +6,20 @@ import { HttpClientModule } from '@angular/common/http';
 import { UpgradeModule } from '@angular/upgrade/static';
 
 import { AppComponent } from './app.component';
+import { FormsModule } from '@angular/forms';
+import { PhoneListComponent } from './phone-list/phone-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-
+    PhoneListComponent
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot([]),
     UpgradeModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: []
